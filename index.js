@@ -64,9 +64,20 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
+function takimSkoru(){
     /*Kodunuzu buraya yazınız*/
+    let ceyrekSkorDegeri = 0;
+    ceyrekSkorDegeri =Math.floor(Math.random()*25);
+    if(10 < ceyrekSkorDegeri  && 25 > ceyrekSkorDegeri){
+      return ceyrekSkorDegeri;
+    } else {
+    ceyrekSkorDegeri = 10 + ceyrekSkorDegeri;
+    return ceyrekSkorDegeri;
+    }
+
 }
+console.log(takimSkoru());
+
 
 
 
@@ -86,9 +97,24 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
+function macSonucu(callback,basketCeyrekSayisi){
   /*Kodunuzu buraya yazınız*/
+
+  let evSahibiSkoru = 0;
+  let konukTakimSkoru = 0;
+ 
+ for(let i=0; i<basketCeyrekSayisi ; i++){ 
+  evSahibiSkoru = evSahibiSkoru + callback();
+  konukTakimSkoru = konukTakimSkoru + callback();
+ } 
+ let newObj ={
+  "EvSahibi": evSahibiSkoru,
+  "KonukTakim": konukTakimSkoru
+ }
+ return newObj;
 }
+console.log(macSonucu(takimSkoru,4));
+
 
 
 
@@ -109,10 +135,19 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
+function periyotSkoru(callbackiki) {
   /*Kodunuzu buraya yazınız*/
+  let evSahibiSkoru = callbackiki();
+  let konukTakimSkoru = callbackiki();
+  let newObj ={
+    "EvSahibi": evSahibiSkoru,
+    "KonukTakim": konukTakimSkoru
+   }
+   return newObj;
+} console.log(periyotSkoru(takimSkoru));
 
-}
+
+
 
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
@@ -146,10 +181,25 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-}
+let newArray = [];
+function skorTabelasi(forthfunc, secondfunc, periodnumber) {
+  /*Kodunuzu buraya yazınız*/ 
+  // let evSahibiSonucSkoru = secondfunc();
+  // let konukTakimSonucSkoru =  secondfunc();
+  let evSahibiPeriodSkoru = 0;
+  let konukTakimPeriodSkoru = 0;
+  
 
+  for(let i = 1; i <= periodnumber; i++) {
+   evSahibiPeriodSkoru = forthfunc().EvSahibi;
+   konukTakimPeriodSkoru = forthfunc().KonukTakim;
+   let skorlar =  i +"Periyot: Ev Sahibi" + evSahibiPeriodSkoru + "- Konuk Takım" + konukTakimPeriodSkoru;
+  } 
+
+newArray.push(skorlar);
+return newArray;
+} 
+console.log(newArray);
 
 
 
